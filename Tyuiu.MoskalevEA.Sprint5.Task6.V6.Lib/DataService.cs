@@ -9,7 +9,7 @@ namespace Tyuiu.MoskalevEA.Sprint5.Task6.V6.Lib
             string content = File.ReadAllText(path);
 
             int count = 0;
-
+             
             foreach (char c in content)
             {
                 if (c >= 'а' && c <= 'я')
