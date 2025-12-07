@@ -18,7 +18,7 @@ namespace Tyuiu.MoskalevEA.Sprint5.Task1.V17.Lib
                     results.Add(formattedResult);
                 }
 
-                return string.Join("\\n", results);
+                return string.Join("\\\n", results);
             }
             catch (Exception ex)
             {
