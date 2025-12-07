@@ -6,29 +6,39 @@ namespace Tyuiu.MoskalevEA.Sprint5.Task2.V30.Lib
     {
         public string SaveToFileTextData(int[,] matrix)
         {
-            string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask2.csv";
-            FileInfo fileInfo = new FileInfo(path);
-            bool fileExists = fileInfo.Exists;
+            string path = $@"{Path.GetTempPath()}\OutPutFileTask2.csv";
+            FileInfo fileinfo = new FileInfo(path);
+            bool fileExists = fileinfo.Exists;
+
             if (fileExists)
             {
                 File.Delete(path);
             }
-            int rows = matrix.GetLength(0);
-            int columns = matrix.GetLength(1);
+
+            int rows = matrix.GetUpperBound(0) + 1;
+            int columns = matrix.Length / rows;
+
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    if (matrix[i, j] < 0)
-                        matrix[i, j] = 0;
-                    else
+                    if (matrix[i, j] > 0)
+                    {
                         matrix[i, j] = 1;
+                    }
+
+                    if (matrix[i, j] < 0)
+                    {
+                        matrix[i,j] = 0;
+                    }
                 }
             }
+
             string str = "";
-            for (int i = 0; i < rows; i++)
+
+            for (int i = 0; i < rows;i++)
             {
-                for (int j = 0; j < columns; j++)
+                for (int j = 0;j < columns;j++)
                 {
                     if (j != columns - 1)
                     {
@@ -39,6 +49,7 @@ namespace Tyuiu.MoskalevEA.Sprint5.Task2.V30.Lib
                         str = str + matrix[i, j];
                     }
                 }
+
                 if (i != rows - 1)
                 {
                     File.AppendAllText(path, str + Environment.NewLine);
@@ -47,6 +58,7 @@ namespace Tyuiu.MoskalevEA.Sprint5.Task2.V30.Lib
                 {
                     File.AppendAllText(path, str);
                 }
+
                 str = "";
             }
 
