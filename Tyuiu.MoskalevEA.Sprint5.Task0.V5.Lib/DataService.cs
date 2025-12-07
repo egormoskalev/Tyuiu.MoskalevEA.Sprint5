@@ -7,14 +7,14 @@ namespace Tyuiu.MoskalevEA.Sprint5.Task0.V5.Lib
 
         public string SaveToFileTextData(int x)
         {
-            double y = Math.Log((x + 1) / (x + 2));
+
+            double y = Math.Log((x + 1.0) / (x + 2.0));
             y = Math.Round(y, 3);
 
             string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask0.txt");
             File.WriteAllText(path, y.ToString());
 
             return path;
-
         }
     }
 }
